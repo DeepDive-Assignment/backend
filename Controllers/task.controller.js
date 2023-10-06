@@ -2,9 +2,10 @@ const taskModel = require("../Models/task.model");
 
 module.exports = {
   get: async (req, res, next) => {
+    //this GET method fetch all task details according to pagination
     try {
       let { page } = req.query;
-      const pageLimit = 3;
+      const pageLimit = 6;
       page -= 1;
       let total = await taskModel.find({}).exec();
       taskModel
@@ -42,6 +43,7 @@ module.exports = {
     }
   },
   getsingletask: (req, res) => {
+    // this GET method fetch single task details for update
     try {
       const { id } = req.params;
       taskModel
@@ -63,6 +65,7 @@ module.exports = {
     }
   },
   post: async (req, res) => {
+    // this POST method is used to create a new task
     try {
       const newTask = await new taskModel(req.body);
       newTask
@@ -80,6 +83,7 @@ module.exports = {
     }
   },
   update: (req, res) => {
+    // this POST method is used to Update specific existing task
     try {
       const { id } = req.params;
       taskModel
@@ -95,6 +99,7 @@ module.exports = {
     }
   },
   delete: (req, res) => {
+    // this DELETE method is used to delete specific task
     try {
       const { id } = req.params;
       taskModel
